@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:prmproject/bottom_bar.dart';
 import 'package:prmproject/screens/const/theme_data.dart';
@@ -19,6 +20,7 @@ import 'screens/feeds.dart';
 import 'screens/landing_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -41,44 +43,52 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) {
-            return themeChangeProvider;
-          }),
-          ChangeNotifierProvider(
-            create: (_) => Products(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => CartProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => FavsProvider(),
-          ),
-        ],
-        child:
-            Consumer<DarkThemeProvider>(builder: (context, themeData, child) {
-          return MaterialApp(
-            title: 'Flutter Demo',
-            theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-            home: LandingPage(),
-            //initialRoute: '/',
-            routes: {
-              //   '/': (ctx) => LandingPage(),
-              BrandNavigationRailScreen.routeName: (ctx) =>
-                  BrandNavigationRailScreen(),
-              CartScreen.routeName: (ctx) => CartScreen(),
-              Feeds.routeName: (ctx) => Feeds(),
-              WishlistScreen.routeName: (ctx) => WishlistScreen(),
-              ProductDetails.routeName: (ctx) => ProductDetails(),
-              CategoriesFeedsScreen.routeName: (ctx) => CategoriesFeedsScreen(),
-              LoginScreen.routeName: (ctx) => LoginScreen(),
-              SignUpScreen.routeName: (ctx) => SignUpScreen(),
-              BottomBarScreen.routeName: (ctx) => BottomBarScreen(),
-            },
-          );
-        }));
+    return FutureBuilder<Object>(
+        future: _initialization,
+        builder: (context, snapshot) {
+          return MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) {
+                  return themeChangeProvider;
+                }),
+                ChangeNotifierProvider(
+                  create: (_) => Products(),
+                ),
+                ChangeNotifierProvider(
+                  create: (_) => CartProvider(),
+                ),
+                ChangeNotifierProvider(
+                  create: (_) => FavsProvider(),
+                ),
+              ],
+              child: Consumer<DarkThemeProvider>(
+                  builder: (context, themeData, child) {
+                return MaterialApp(
+                  title: 'Flutter Demo',
+                  theme:
+                      Styles.themeData(themeChangeProvider.darkTheme, context),
+                  home: LandingPage(),
+                  //initialRoute: '/',
+                  routes: {
+                    //   '/': (ctx) => LandingPage(),
+                    BrandNavigationRailScreen.routeName: (ctx) =>
+                        BrandNavigationRailScreen(),
+                    CartScreen.routeName: (ctx) => CartScreen(),
+                    Feeds.routeName: (ctx) => Feeds(),
+                    WishlistScreen.routeName: (ctx) => WishlistScreen(),
+                    ProductDetails.routeName: (ctx) => ProductDetails(),
+                    CategoriesFeedsScreen.routeName: (ctx) =>
+                        CategoriesFeedsScreen(),
+                    LoginScreen.routeName: (ctx) => LoginScreen(),
+                    SignUpScreen.routeName: (ctx) => SignUpScreen(),
+                    BottomBarScreen.routeName: (ctx) => BottomBarScreen(),
+                  },
+                );
+              }));
+        });
   }
 }

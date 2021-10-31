@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:prmproject/screens/const/colors.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const routeName = '/SignUpScreen';
@@ -23,6 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   int _phoneNumber;
   File _pickedImage;
   final _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   void dispose() {
     _passwordFocusNode.dispose();
@@ -36,6 +38,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     FocusScope.of(context).unfocus();
     if (isValid) {
       _formKey.currentState.save();
+      _auth.createUserWithEmailAndPassword(
+          email: _emailAddress.toLowerCase().trim(),
+          password: _password.trim());
     }
   }
 
