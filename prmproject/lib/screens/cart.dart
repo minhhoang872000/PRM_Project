@@ -3,12 +3,41 @@ import 'package:prmproject/screens/const/colors.dart';
 import 'package:prmproject/screens/const/my_icons.dart';
 import 'package:prmproject/screens/provider/cart_provider.dart';
 import 'package:prmproject/screens/services/global_method.dart';
+import 'package:prmproject/screens/services/payment.dart';
 import 'package:prmproject/widget/cart_empty.dart';
 import 'package:prmproject/widget/cart_full.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:provider/provider.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   static const routeName = '/CartScreen';
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    StripeService.init();
+  }
+
+  void payWithCard({int amount}) async {
+    ProgressDialog dialog = ProgressDialog(context);
+    dialog.style(message: 'Please wait...');
+    await dialog.show();
+    var response = await StripeService.payWithNewCard(
+        currency: 'USD', amount: amount.toString());
+    await dialog.hide();
+
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(response.message),
+      duration: Duration(milliseconds: response.success == true ? 1200 : 3000),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     GlobalMethods globalMethods = GlobalMethods();
@@ -87,7 +116,11 @@ class CartScreen extends StatelessWidget {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(30),
-                      onTap: () {},
+                      onTap: () {
+                        double amountInCents = subtotal * 1000;
+                        int integerAmount = (amountInCents / 10).ceil();
+                        payWithCard(amount: integerAmount);
+                      },
                       splashColor: Theme.of(ctx).splashColor,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
