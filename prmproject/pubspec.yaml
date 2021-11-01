@@ -98,6 +98,17 @@ flutter:
     - assets/images/CatPhones.png
     - assets/images/CatShoes.jpg
     - assets/images/CatWatches.jpg
+    - assets/images/bagBrand.jpg
+    - assets/images/jacketBrand.jpg
+    - assets/images/phukienBrand.jpg
+    - assets/images/shirtBrand.jpg
+    - assets/images/shoesBrand.png
+    - assets/images/ONTOP.jpg
+    - assets/images/DAVIES.jpg
+    - assets/images/DKMV.jpg
+    - assets/images/5THEWAY.jpg
+    - assets/images/UNCOVER.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

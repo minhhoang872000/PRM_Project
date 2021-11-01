@@ -88,44 +88,25 @@ class _BrandNavigationRailScreenState extends State<BrandNavigationRailScreen> {
                           _selectedIndex = index;
                           if (_selectedIndex == 0) {
                             setState(() {
-                              brand = 'Addidas';
+                              brand = '5THEWAY';
                             });
                           }
                           if (_selectedIndex == 1) {
                             setState(() {
-                              brand = 'Apple';
+                              brand = 'DAVIES';
                             });
                           }
                           if (_selectedIndex == 2) {
                             setState(() {
-                              brand = 'Dell';
+                              brand = 'DKMV';
                             });
                           }
                           if (_selectedIndex == 3) {
                             setState(() {
-                              brand = 'H&M';
+                              brand = 'ONTOP';
                             });
                           }
-                          if (_selectedIndex == 4) {
-                            setState(() {
-                              brand = 'Nike';
-                            });
-                          }
-                          if (_selectedIndex == 5) {
-                            setState(() {
-                              brand = 'Samsung';
-                            });
-                          }
-                          if (_selectedIndex == 6) {
-                            setState(() {
-                              brand = 'Huawei';
-                            });
-                          }
-                          if (_selectedIndex == 7) {
-                            setState(() {
-                              brand = 'All';
-                            });
-                          }
+
                           print(brand);
                         });
                       },
@@ -159,14 +140,14 @@ class _BrandNavigationRailScreenState extends State<BrandNavigationRailScreen> {
                         letterSpacing: 0.8,
                       ),
                       destinations: [
-                        buildRotatedTextRailDestination('Addidas', padding),
-                        buildRotatedTextRailDestination("Apple", padding),
-                        buildRotatedTextRailDestination("Dell", padding),
-                        buildRotatedTextRailDestination("H&M", padding),
-                        buildRotatedTextRailDestination("Nike", padding),
-                        buildRotatedTextRailDestination("Samsung", padding),
-                        buildRotatedTextRailDestination("Huawei", padding),
-                        buildRotatedTextRailDestination("All", padding),
+                        buildRotatedTextRailDestination('5THEWAY', padding),
+                        buildRotatedTextRailDestination("DAVIES", padding),
+                        buildRotatedTextRailDestination("DKMV", padding),
+                        buildRotatedTextRailDestination("ONTOP", padding),
+                        buildRotatedTextRailDestination("UNCOVER", padding),
+                        // buildRotatedTextRailDestination("Samsung", padding),
+                        // buildRotatedTextRailDestination("Huawei", padding),
+                        // buildRotatedTextRailDestination("All", padding),
                       ],
                     ),
                   ),
