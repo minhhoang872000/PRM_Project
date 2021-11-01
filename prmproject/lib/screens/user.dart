@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
@@ -16,12 +18,40 @@ class UserInfo extends StatefulWidget {
 class _UserInfoState extends State<UserInfo> {
   ScrollController _scrollController;
   var top = 0.0;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String _uid;
+  String _name;
+  String _email;
+  String _joinedAt;
+  int _phoneNumber;
+  String _userImageUrl;
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       setState(() {});
+    });
+    getData();
+  }
+
+  void getData() async {
+    User user = _auth.currentUser;
+    _uid = user.uid;
+
+    print('user.displayName ${user.displayName}');
+    final DocumentSnapshot userDoc = user.isAnonymous
+        ? null
+        : await FirebaseFirestore.instance.collection('users').doc(_uid).get();
+    if (userDoc == null) {
+      return;
+    }
+    setState(() {
+      _name = userDoc.get('name');
+      _email = user.email;
+      _joinedAt = userDoc.get('joinedAt');
+      _phoneNumber = userDoc.get('phoneNumber');
+      _userImageUrl = userDoc.get('imageUrl');
     });
   }
 
@@ -82,7 +112,7 @@ class _UserInfoState extends State<UserInfo> {
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
                                       fit: BoxFit.fill,
-                                      image: NetworkImage(
+                                      image: NetworkImage(_userImageUrl ??
                                           'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
                                     ),
                                   ),
@@ -92,7 +122,7 @@ class _UserInfoState extends State<UserInfo> {
                                 ),
                                 Text(
                                   // 'top.toString()',
-                                  'Guest',
+                                  _name == null ? 'Guest' : _name,
                                   style: TextStyle(
                                       fontSize: 20.0, color: Colors.white),
                                 ),
@@ -102,7 +132,7 @@ class _UserInfoState extends State<UserInfo> {
                         ],
                       ),
                       background: Image(
-                        image: NetworkImage(
+                        image: NetworkImage(_userImageUrl ??
                             'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
                         fit: BoxFit.fill,
                       ),
@@ -157,10 +187,11 @@ class _UserInfoState extends State<UserInfo> {
                       thickness: 1,
                       color: Colors.grey,
                     ),
-                    userListTile('Email', 'Email sub', 0, context),
-                    userListTile('Phone number', '4555', 1, context),
+                    userListTile('Email', _email ?? '', 0, context),
+                    userListTile('Phone number', _phoneNumber.toString() ?? '',
+                        1, context),
                     userListTile('Shipping address', '', 2, context),
-                    userListTile('joined date', 'date', 3, context),
+                    userListTile('joined date', _joinedAt ?? '', 3, context),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: userTitle('User settings'),
@@ -187,10 +218,49 @@ class _UserInfoState extends State<UserInfo> {
                       child: InkWell(
                         splashColor: Theme.of(context).splashColor,
                         child: ListTile(
-                          onTap: () {
-                            Navigator.canPop(context)
-                                ? Navigator.pop(context)
-                                : null;
+                          onTap: () async {
+                            // Navigator.canPop(context)? Navigator.pop(context):null;
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext ctx) {
+                                  return AlertDialog(
+                                    title: Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 6.0),
+                                          child: Image.network(
+                                            'https://image.flaticon.com/icons/png/128/1828/1828304.png',
+                                            height: 20,
+                                            width: 20,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text('Sign out'),
+                                        ),
+                                      ],
+                                    ),
+                                    content: Text('Do you wanna Sign out?'),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () async {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('Cancel')),
+                                      TextButton(
+                                          onPressed: () async {
+                                            await _auth.signOut().then(
+                                                (value) =>
+                                                    Navigator.pop(context));
+                                          },
+                                          child: Text(
+                                            'Ok',
+                                            style: TextStyle(color: Colors.red),
+                                          ))
+                                    ],
+                                  );
+                                });
                           },
                           title: Text('Logout'),
                           leading: Icon(Icons.exit_to_app_rounded),

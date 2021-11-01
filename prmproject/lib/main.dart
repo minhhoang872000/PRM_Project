@@ -9,6 +9,7 @@ import 'package:prmproject/screens/models/products.dart';
 import 'package:prmproject/screens/provider/cart_provider.dart';
 import 'package:prmproject/screens/provider/dark_theme.dart';
 import 'package:prmproject/screens/provider/favs_provider.dart';
+import 'package:prmproject/widget/user_state.dart';
 import 'package:prmproject/widget/wishlist.dart';
 import 'package:provider/provider.dart';
 
@@ -50,6 +51,19 @@ class _MyAppState extends State<MyApp> {
     return FutureBuilder<Object>(
         future: _initialization,
         builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return MaterialApp(
+                home: Scaffold(
+                    body: Center(
+              child: CircularProgressIndicator(),
+            )));
+          } else if (snapshot.hasError) {
+            MaterialApp(
+                home: Scaffold(
+                    body: Center(
+              child: Text('Error Occurs'),
+            )));
+          }
           return MultiProvider(
               providers: [
                 ChangeNotifierProvider(create: (_) {
@@ -71,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                   title: 'Flutter Demo',
                   theme:
                       Styles.themeData(themeChangeProvider.darkTheme, context),
-                  home: LandingPage(),
+                  home: UserState(),
                   //initialRoute: '/',
                   routes: {
                     //   '/': (ctx) => LandingPage(),
