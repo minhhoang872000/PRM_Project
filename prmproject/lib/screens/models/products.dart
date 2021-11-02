@@ -10,24 +10,28 @@ class Products with ChangeNotifier {
 
   Future<void> FetchProducts() async {
     await FirebaseFirestore.instance
-        .collection("products")
+        .collection('products')
         .get()
         .then((QuerySnapshot productsSnapshot) {
       _products = [];
       productsSnapshot.docs.forEach((element) {
         _products.insert(
-            0,
-            Product(
+          0,
+          Product(
               id: element.get('productId'),
               title: element.get('productTitle'),
               description: element.get('productDescription'),
-              price: double.parse(element.get('price')),
+              price: double.parse(
+                element.get('price'),
+              ),
               imageUrl: element.get('productImage'),
               brand: element.get('productBrand'),
-              productCategoryName: element.get('productCategory'),
-              quantity: int.parse(element.get('productQuantity')),
-              isPopular: true,
-            ));
+              productCategoryName: element.get('productQuantity'),
+              quantity: int.parse(
+                element.get('price'),
+              ),
+              isPopular: true),
+        );
       });
     });
   }

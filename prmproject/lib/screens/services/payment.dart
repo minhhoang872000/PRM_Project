@@ -36,7 +36,7 @@ class StripeService {
           await http.post(paymentApiUri, headers: headers, body: body);
       return jsonDecode(response.body);
     } catch (error) {
-      print('error occured in the payment intent $error');
+      print('error occured in the payment intent $error ');
     }
     return null;
   }
@@ -49,20 +49,20 @@ class StripeService {
       var paymentIntent =
           await StripeService.createPaymentIntent(amount, currency);
       var response = await StripePayment.confirmPaymentIntent(PaymentIntent(
-          clientSecret: paymentIntent['client_server'],
+          clientSecret: paymentIntent['client_secret'],
           paymentMethodId: paymentMethod.id));
       if (response.status == 'succeeded') {
         return StripeTransactionResponse(
             message: 'Transaction successful', success: true);
       } else {
         return StripeTransactionResponse(
-            message: 'Transaction fail', success: false);
+            message: 'Transaction failed', success: false);
       }
     } on PlatformException catch (error) {
       return StripeService.getPlatformExceptionErrorResult(error);
     } catch (error) {
       return StripeTransactionResponse(
-          message: 'Transaction fail : $error', success: false);
+          message: 'Transaction failed : $error', success: false);
     }
   }
 
@@ -71,6 +71,7 @@ class StripeService {
     if (err.code == 'cancelled') {
       message = 'Transaction cancelled';
     }
+
     return new StripeTransactionResponse(message: message, success: false);
   }
 }

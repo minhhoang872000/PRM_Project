@@ -6,17 +6,20 @@ import 'package:prmproject/screens/inner_screens/brands_navigation_rail.dart';
 import 'package:prmproject/screens/inner_screens/categories_feeds.dart';
 import 'package:prmproject/screens/inner_screens/product_details.dart';
 import 'package:prmproject/screens/models/products.dart';
+import 'package:prmproject/screens/order/order.dart';
 import 'package:prmproject/screens/provider/cart_provider.dart';
 import 'package:prmproject/screens/provider/dark_theme.dart';
 import 'package:prmproject/screens/provider/favs_provider.dart';
+import 'package:prmproject/screens/provider/order_provider.dart';
+import 'package:prmproject/screens/wishlist/wishlist.dart';
+import 'package:prmproject/widget/upload_product_form.dart';
 import 'package:prmproject/widget/user_state.dart';
-import 'package:prmproject/widget/wishlist.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/auth/login.dart';
 import 'screens/auth/sign_up.dart';
 
-import 'screens/cart.dart';
+import 'screens/cart/cart.dart';
 import 'screens/feeds.dart';
 import 'screens/landing_page.dart';
 
@@ -34,6 +37,7 @@ class _MyAppState extends State<MyApp> {
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
   void getCurrentAppTheme() async {
+    print('called ,mmmmm');
     themeChangeProvider.darkTheme =
         await themeChangeProvider.darkThemePreferences.getTheme();
   }
@@ -45,44 +49,50 @@ class _MyAppState extends State<MyApp> {
   }
 
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Object>(
+    return FutureBuilder(
         future: _initialization,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return MaterialApp(
-                home: Scaffold(
-                    body: Center(
-              child: CircularProgressIndicator(),
-            )));
+              home: Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
           } else if (snapshot.hasError) {
             MaterialApp(
-                home: Scaffold(
-                    body: Center(
-              child: Text('Error Occurs'),
-            )));
+              home: Scaffold(
+                body: Center(
+                  child: Text('Error occured'),
+                ),
+              ),
+            );
           }
           return MultiProvider(
-              providers: [
-                ChangeNotifierProvider(create: (_) {
-                  return themeChangeProvider;
-                }),
-                ChangeNotifierProvider(
-                  create: (_) => Products(),
-                ),
-                ChangeNotifierProvider(
-                  create: (_) => CartProvider(),
-                ),
-                ChangeNotifierProvider(
-                  create: (_) => FavsProvider(),
-                ),
-              ],
-              child: Consumer<DarkThemeProvider>(
-                  builder: (context, themeData, child) {
+            providers: [
+              ChangeNotifierProvider(create: (_) {
+                return themeChangeProvider;
+              }),
+              ChangeNotifierProvider(
+                create: (_) => Products(),
+              ),
+              ChangeNotifierProvider(
+                create: (_) => CartProvider(),
+              ),
+              ChangeNotifierProvider(
+                create: (_) => FavsProvider(),
+              ),
+              ChangeNotifierProvider(
+                create: (_) => OrdersProvider(),
+              ),
+            ],
+            child: Consumer<DarkThemeProvider>(
+              builder: (context, themeChangeProvider, ch) {
                 return MaterialApp(
-                  title: 'Flutter Demo',
+                  title: 'Flutter Shop',
                   theme:
                       Styles.themeData(themeChangeProvider.darkTheme, context),
                   home: UserState(),
@@ -100,9 +110,14 @@ class _MyAppState extends State<MyApp> {
                     LoginScreen.routeName: (ctx) => LoginScreen(),
                     SignUpScreen.routeName: (ctx) => SignUpScreen(),
                     BottomBarScreen.routeName: (ctx) => BottomBarScreen(),
+                    UploadProductForm.routeName: (ctx) => UploadProductForm(),
+
+                    OrderScreen.routeName: (ctx) => OrderScreen(),
                   },
                 );
-              }));
+              },
+            ),
+          );
         });
   }
 }

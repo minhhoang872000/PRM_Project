@@ -1,11 +1,12 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:prmproject/screens/cart.dart';
+import 'package:prmproject/screens/cart/cart.dart';
 import 'package:prmproject/screens/const/colors.dart';
 import 'package:prmproject/screens/provider/cart_provider.dart';
 import 'package:prmproject/screens/provider/favs_provider.dart';
 import 'package:prmproject/screens/user.dart';
-import 'package:prmproject/widget/wishlist.dart';
+import 'package:prmproject/screens/wishlist/wishlist.dart';
+
 import 'package:provider/provider.dart';
 
 class SearchByHeader extends SliverPersistentHeaderDelegate {

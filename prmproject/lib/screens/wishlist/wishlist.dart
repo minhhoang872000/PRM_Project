@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:prmproject/screens/const/my_icons.dart';
 import 'package:prmproject/screens/provider/favs_provider.dart';
 import 'package:prmproject/screens/services/global_method.dart';
-import 'package:prmproject/widget/wishlist_empty.dart';
-import 'package:prmproject/widget/wishlist_full.dart';
+import 'package:prmproject/screens/wishlist/wishlist_empty.dart';
+import 'package:prmproject/screens/wishlist/wishlist_full.dart';
+
 import 'package:provider/provider.dart';
 
 class WishlistScreen extends StatelessWidget {

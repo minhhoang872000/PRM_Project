@@ -65,7 +65,6 @@ class _LandingPageState extends State<LandingPage>
           var dateparse = DateTime.parse(date);
           var formattedDate =
               "${dateparse.day}-${dateparse.month}-${dateparse.year}";
-
           final authResult = await _auth.signInWithCredential(
               GoogleAuthProvider.credential(
                   idToken: googleAuth.idToken,
@@ -80,7 +79,7 @@ class _LandingPageState extends State<LandingPage>
             'phoneNumber': authResult.user.phoneNumber,
             'imageUrl': authResult.user.photoURL,
             'joinedAt': formattedDate,
-            'created': Timestamp.now(),
+            'createdAt': Timestamp.now(),
           });
         } catch (error) {
           _globalMethods.authErrorHandle(error.message, context);

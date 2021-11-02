@@ -70,29 +70,30 @@ class _UploadProductFormState extends State<UploadProductForm> {
       print(_productBrand);
       print(_productDescription);
       print(_productQuantity);
-      // Use those values to send our auth request ...
+      // Use those values to send our request ...
     }
     if (isValid) {
-      setState(() {
-        _isLoading = true;
-      });
       _formKey.currentState.save();
       try {
         if (_pickedImage == null) {
-          _globalMethods.authErrorHandle("Please pick an image", context);
+          _globalMethods.authErrorHandle('Please pick an image', context);
         } else {
+          setState(() {
+            _isLoading = true;
+          });
           final ref = FirebaseStorage.instance
               .ref()
               .child('productsImages')
               .child(_productTitle + '.jpg');
           await ref.putFile(_pickedImage);
           url = await ref.getDownloadURL();
+
           final User user = _auth.currentUser;
           final _uid = user.uid;
           final productId = uuid.v4();
           await FirebaseFirestore.instance
               .collection('products')
-              .doc(_uid)
+              .doc(productId)
               .set({
             'productId': productId,
             'productTitle': _productTitle,

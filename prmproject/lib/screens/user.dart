@@ -3,11 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
-import 'package:prmproject/screens/cart.dart';
+import 'package:prmproject/screens/cart/cart.dart';
 import 'package:prmproject/screens/const/colors.dart';
 import 'package:prmproject/screens/const/my_icons.dart';
+import 'package:prmproject/screens/order/order.dart';
 import 'package:prmproject/screens/provider/dark_theme.dart';
-import 'package:prmproject/widget/wishlist.dart';
+import 'package:prmproject/screens/wishlist/wishlist.dart';
+
 import 'package:provider/provider.dart';
 
 class UserInfo extends StatefulWidget {
@@ -177,6 +179,19 @@ class _UserInfoState extends State<UserInfo> {
                           title: Text('Cart'),
                           trailing: Icon(Icons.chevron_right_rounded),
                           leading: Icon(MyAppIcons.cart),
+                        ),
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Theme.of(context).splashColor,
+                        child: ListTile(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(OrderScreen.routeName),
+                          title: Text('My Orders'),
+                          trailing: Icon(Icons.chevron_right_rounded),
+                          leading: Icon(MyAppIcons.bag),
                         ),
                       ),
                     ),

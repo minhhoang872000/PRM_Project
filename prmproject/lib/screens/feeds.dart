@@ -6,11 +6,12 @@ import 'package:prmproject/screens/models/product.dart';
 import 'package:prmproject/screens/models/products.dart';
 import 'package:prmproject/screens/provider/cart_provider.dart';
 import 'package:prmproject/screens/provider/favs_provider.dart';
+import 'package:prmproject/screens/wishlist/wishlist.dart';
 import 'package:prmproject/widget/feeds_products.dart';
-import 'package:prmproject/widget/wishlist.dart';
+
 import 'package:provider/provider.dart';
 
-import 'cart.dart';
+import 'cart/cart.dart';
 
 class Feeds extends StatelessWidget {
   static const routeName = '/Feeds';

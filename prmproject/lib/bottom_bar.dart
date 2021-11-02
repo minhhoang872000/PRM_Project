@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prmproject/screens/cart.dart';
+import 'package:prmproject/screens/cart/cart.dart';
 import 'package:prmproject/screens/const/my_icons.dart';
 import 'package:prmproject/screens/feeds.dart';
 import 'package:prmproject/screens/home.dart';
