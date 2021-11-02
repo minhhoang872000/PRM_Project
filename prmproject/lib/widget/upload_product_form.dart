@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:prmproject/main.dart';
 import 'package:prmproject/screens/const/colors.dart';
 import 'package:prmproject/screens/services/global_method.dart';
+import 'package:toast/toast.dart';
 import 'package:uuid/uuid.dart';
 
 class UploadProductForm extends StatefulWidget {
@@ -106,7 +108,11 @@ class _UploadProductFormState extends State<UploadProductForm> {
             'userId': _uid,
             'createdAt': Timestamp.now(),
           });
+          Toast.show("Upload Success", context,
+              duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
           Navigator.canPop(context) ? Navigator.pop(context) : null;
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MyApp()));
         }
       } catch (error) {
         _globalMethods.authErrorHandle(error.message, context);
