@@ -12,7 +12,7 @@ class CategoryWidget extends StatefulWidget {
 class _CategoryWidgetState extends State<CategoryWidget> {
   List<Map<String, Object>> categories = [
     {
-      'categoryName': 'Balo',
+      'categoryName': 'Backpack',
       'categoryImagesPath': 'assets/images/bagBrand.jpg',
     },
     {

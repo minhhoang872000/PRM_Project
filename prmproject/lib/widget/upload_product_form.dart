@@ -417,12 +417,16 @@ class _UploadProductFormState extends State<UploadProductForm> {
                             DropdownButton<String>(
                               items: [
                                 DropdownMenuItem<String>(
-                                  child: Text('Balo'),
-                                  value: 'Balo',
+                                  child: Text('Backpack'),
+                                  value: 'Backpack',
                                 ),
                                 DropdownMenuItem<String>(
                                   child: Text('Jacket'),
                                   value: 'Jacket',
+                                ),
+                                DropdownMenuItem<String>(
+                                  child: Text('Pants'),
+                                  value: 'Pants',
                                 ),
                                 DropdownMenuItem<String>(
                                   child: Text('Accessory'),
