@@ -26,9 +26,9 @@ class Products with ChangeNotifier {
               ),
               imageUrl: element.get('productImage'),
               brand: element.get('productBrand'),
-              productCategoryName: element.get('productQuantity'),
+              productCategoryName: element.get('productCategory'),
               quantity: int.parse(
-                element.get('price'),
+                element.get('productQuantity'),
               ),
               isPopular: true),
         );
@@ -50,6 +50,7 @@ class Products with ChangeNotifier {
             .toLowerCase()
             .contains(categoryName.toLowerCase()))
         .toList();
+
     return _categoryList;
   }
 

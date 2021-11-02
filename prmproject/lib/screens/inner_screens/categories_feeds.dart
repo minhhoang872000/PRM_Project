@@ -12,6 +12,7 @@ class CategoriesFeedsScreen extends StatelessWidget {
     final categoryName = ModalRoute.of(context).settings.arguments as String;
     print(categoryName);
     final productsList = productsProvider.findByCategory(categoryName);
+
     return Scaffold(
       body: productsList.isEmpty
           ? Column(
