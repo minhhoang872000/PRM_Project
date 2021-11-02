@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:prmproject/screens/models/products.dart';
 import 'package:prmproject/widget/feeds_products.dart';
 import 'package:provider/provider.dart';
@@ -12,18 +13,35 @@ class CategoriesFeedsScreen extends StatelessWidget {
     print(categoryName);
     final productsList = productsProvider.findByCategory(categoryName);
     return Scaffold(
-      body: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 240 / 420,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-        children: List.generate(productsList.length, (index) {
-          return ChangeNotifierProvider.value(
-            value: productsList[index],
-            child: FeedProducts(),
-          );
-        }),
-      ),
+      body: productsList.isEmpty
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(Feather.database),
+                SizedBox(
+                  height: 40,
+                ),
+                Text('No products related to this brand',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                    )),
+              ],
+            )
+          : GridView.count(
+              crossAxisCount: 2,
+              childAspectRatio: 240 / 420,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+              children: List.generate(productsList.length, (index) {
+                return ChangeNotifierProvider.value(
+                  value: productsList[index],
+                  child: FeedProducts(),
+                );
+              }),
+            ),
 //         StaggeredGridView.countBuilder(
 //           padding: ,
 //   crossAxisCount: 6,
