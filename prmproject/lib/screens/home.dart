@@ -27,13 +27,11 @@ class _HomeState extends State<Home> {
   ];
 
   List _brandImages = [
-    'assets/images/addidas.jpg',
-    'assets/images/apple.jpg',
-    'assets/images/dell.jpg',
-    'assets/images/h&m.jpg',
-    'assets/images/nike.jpg',
-    'assets/images/samsung.jpg',
-    'assets/images/huawei.jpg',
+    'assets/images/5THEWAY.jpg',
+    'assets/images/DAVIES.jpg',
+    'assets/images/DKMV.jpg',
+    'assets/images/ONTOP.jpg',
+    'assets/images/UNCOVER.jpg',
   ];
   @override
   Widget build(BuildContext context) {
@@ -110,7 +108,7 @@ class _HomeState extends State<Home> {
                 width: double.infinity,
                 height: 180,
                 child: ListView.builder(
-                  itemCount: 7,
+                  itemCount: 4,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext ctx, int index) {
                     return CategoryWidget(

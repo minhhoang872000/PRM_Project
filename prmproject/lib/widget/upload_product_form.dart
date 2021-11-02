@@ -411,28 +411,20 @@ class _UploadProductFormState extends State<UploadProductForm> {
                             DropdownButton<String>(
                               items: [
                                 DropdownMenuItem<String>(
-                                  child: Text('Phones'),
-                                  value: 'Phones',
+                                  child: Text('Balo'),
+                                  value: 'Balo',
                                 ),
                                 DropdownMenuItem<String>(
-                                  child: Text('Clothes'),
-                                  value: 'Clothes',
+                                  child: Text('Jacket'),
+                                  value: 'Jacket',
                                 ),
                                 DropdownMenuItem<String>(
-                                  child: Text('Beauty & health'),
-                                  value: 'Beauty',
+                                  child: Text('Accessory'),
+                                  value: 'Accessory',
                                 ),
                                 DropdownMenuItem<String>(
-                                  child: Text('Shoes'),
-                                  value: 'Shoes',
-                                ),
-                                DropdownMenuItem<String>(
-                                  child: Text('Funiture'),
-                                  value: 'Funiture',
-                                ),
-                                DropdownMenuItem<String>(
-                                  child: Text('Watches'),
-                                  value: 'Watches',
+                                  child: Text('Shirt'),
+                                  value: 'Shirt',
                                 ),
                               ],
                               onChanged: (String value) {
@@ -481,36 +473,24 @@ class _UploadProductFormState extends State<UploadProductForm> {
                             DropdownButton<String>(
                               items: [
                                 DropdownMenuItem<String>(
-                                  child: Text('Brandless'),
-                                  value: 'Brandless',
+                                  child: Text('5THEWAY'),
+                                  value: '5THEWAY',
                                 ),
                                 DropdownMenuItem<String>(
-                                  child: Text('Addidas'),
-                                  value: 'Addidas',
+                                  child: Text('DAVIES'),
+                                  value: 'DAVIES',
                                 ),
                                 DropdownMenuItem<String>(
-                                  child: Text('Apple'),
-                                  value: 'Apple',
+                                  child: Text('DKMV'),
+                                  value: 'DKMV',
                                 ),
                                 DropdownMenuItem<String>(
-                                  child: Text('Dell'),
-                                  value: 'Dell',
+                                  child: Text('ONTOP'),
+                                  value: 'ONTOP',
                                 ),
                                 DropdownMenuItem<String>(
-                                  child: Text('H&M'),
-                                  value: 'H&M',
-                                ),
-                                DropdownMenuItem<String>(
-                                  child: Text('Nike'),
-                                  value: 'Nike',
-                                ),
-                                DropdownMenuItem<String>(
-                                  child: Text('Samsung'),
-                                  value: 'Samsung',
-                                ),
-                                DropdownMenuItem<String>(
-                                  child: Text('Huawei'),
-                                  value: 'Huawei',
+                                  child: Text('UNCOVER'),
+                                  value: 'UNCOVER',
                                 ),
                               ],
                               onChanged: (String value) {
