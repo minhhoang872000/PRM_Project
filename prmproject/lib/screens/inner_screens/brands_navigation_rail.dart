@@ -194,7 +194,7 @@ class ContentSpace extends StatelessWidget {
         productsBrand.add(productsData.products[i]);
       }
     }
-    print('productsBrand ${productsBrand[0].imageUrl}');
+    // print('productsBrand ${productsBrand[0].imageUrl}');
     print('brand $brand');
     return Expanded(
       child: Padding(

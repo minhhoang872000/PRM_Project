@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:prmproject/screens/models/product.dart';
 
@@ -9,8 +11,13 @@ class Products with ChangeNotifier {
   }
 
   Future<void> FetchProducts() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    User _user = _auth.currentUser;
+    var _uid = _user.uid;
+    print(_uid);
     await FirebaseFirestore.instance
         .collection('products')
+        .where('userId', isNotEqualTo: _uid)
         .get()
         .then((QuerySnapshot productsSnapshot) {
       _products = [];
