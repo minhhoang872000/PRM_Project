@@ -46,7 +46,7 @@ class _FeedProductsState extends State<FeedProducts> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      /*Positioned(
                         // bottom: 0,
                         // right: 5,
                         // top: 5,
@@ -60,7 +60,7 @@ class _FeedProductsState extends State<FeedProducts> {
                           badgeContent: Text('Sản phẩm mới',
                               style: TextStyle(color: Colors.white)),
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
                 ],
@@ -74,7 +74,7 @@ class _FeedProductsState extends State<FeedProducts> {
                     SizedBox(height: 10),
                     Text('${productsAttributes.title}',style: TextStyle(
                       fontSize: 18,
-                      color: Colors.green,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                     )),
                     SizedBox(height: 10),
@@ -108,13 +108,13 @@ class _FeedProductsState extends State<FeedProducts> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        /*Text(
                           'Mô tả : ${productsAttributes.description}',
                           style: TextStyle(
                               fontSize: 12,
                               color: Colors.grey,
                               fontWeight: FontWeight.w600),
-                        ),
+                        ),*/
                         
                         Material(
                           color: Colors.transparent,

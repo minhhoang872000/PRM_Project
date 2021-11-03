@@ -187,7 +187,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(height: 10.0),
-                            Padding(
+                            /*Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 'No reviews yet',
@@ -209,7 +209,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       : ColorsConsts.subTitle,
                                 ),
                               ),
-                            ),
+                            ),*/
                             SizedBox(
                               height: 70,
                             ),
