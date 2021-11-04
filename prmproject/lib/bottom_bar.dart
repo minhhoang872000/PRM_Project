@@ -54,7 +54,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         notchMargin: 0.01,
         clipBehavior: Clip.antiAlias,
         child: Container(
-          height: kBottomNavigationBarHeight * 0.98,
+          height: kBottomNavigationBarHeight * 1.1,
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
