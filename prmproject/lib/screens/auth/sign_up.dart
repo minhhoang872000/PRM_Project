@@ -419,7 +419,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Sign up',
+                                          'Register Account',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 17),
