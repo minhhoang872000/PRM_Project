@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:prmproject/screens/auth/forgetpassword.dart';
 import 'package:prmproject/screens/const/colors.dart';
 import 'package:prmproject/screens/services/global_method.dart';
 import 'package:wave/config.dart';
@@ -174,7 +175,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 2, horizontal: 20),
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, ForgetPassword.routeName);
+                                },
                                 child: Text(
                                   'Forget password?',
                                   style: TextStyle(

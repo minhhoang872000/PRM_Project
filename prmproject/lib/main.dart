@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:prmproject/bottom_bar.dart';
+import 'package:prmproject/screens/auth/forgetpassword.dart';
 import 'package:prmproject/screens/cart_product/cart_product.dart';
 import 'package:prmproject/screens/const/theme_data.dart';
 import 'package:prmproject/screens/inner_screens/brands_navigation_rail.dart';
@@ -36,7 +37,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
   void getCurrentAppTheme() async {
@@ -122,6 +122,7 @@ class _MyAppState extends State<MyApp> {
 
                     OrderScreen.routeName: (ctx) => OrderScreen(),
                     CartProductScreen.routeName: (ctx) => CartProductScreen(),
+                    ForgetPassword.routeName: (ctx) => ForgetPassword(),
                   },
                 );
               },
