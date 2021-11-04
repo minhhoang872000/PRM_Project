@@ -36,6 +36,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
   void getCurrentAppTheme() async {
@@ -98,6 +99,7 @@ class _MyAppState extends State<MyApp> {
             child: Consumer<DarkThemeProvider>(
               builder: (context, themeChangeProvider, ch) {
                 return MaterialApp(
+                  debugShowCheckedModeBanner: false,
                   title: 'Flutter Shop',
                   theme:
                       Styles.themeData(themeChangeProvider.darkTheme, context),
