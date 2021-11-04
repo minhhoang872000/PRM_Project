@@ -82,11 +82,12 @@ class _LandingPageState extends State<LandingPage>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Text(
-                'Welcome to the biggest online store',
+                'Welcome to the local brand shopping store',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 26,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.purple
                 ),
               ),
             )
