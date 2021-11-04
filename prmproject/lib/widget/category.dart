@@ -62,7 +62,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
               categories[widget.index]['categoryName'],
               style: TextStyle(
                 fontWeight: FontWeight.w500,
-                fontSize: 18,
+                fontSize: 16,
                 color: Theme.of(context).textSelectionColor,
               ),
             ),

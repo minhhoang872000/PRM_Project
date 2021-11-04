@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:prmproject/screens/cart/cart.dart';
+import 'package:prmproject/screens/cart_product/cart_product.dart';
 import 'package:prmproject/screens/const/colors.dart';
 import 'package:prmproject/screens/const/my_icons.dart';
 import 'package:prmproject/screens/order/order.dart';
@@ -192,6 +193,19 @@ class _UserInfoState extends State<UserInfo> {
                           title: Text('My Orders'),
                           trailing: Icon(Icons.chevron_right_rounded),
                           leading: Icon(MyAppIcons.bag),
+                        ),
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Theme.of(context).splashColor,
+                        child: ListTile(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(CartProductScreen.routeName),
+                          title: Text('My Product'),
+                          trailing: Icon(Icons.chevron_right_rounded),
+                          leading: Icon(MyAppIcons.upload),
                         ),
                       ),
                     ),

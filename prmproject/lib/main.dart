@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:prmproject/bottom_bar.dart';
+import 'package:prmproject/screens/cart_product/cart_product.dart';
 import 'package:prmproject/screens/const/theme_data.dart';
 import 'package:prmproject/screens/inner_screens/brands_navigation_rail.dart';
 import 'package:prmproject/screens/inner_screens/categories_feeds.dart';
@@ -8,6 +9,7 @@ import 'package:prmproject/screens/inner_screens/product_details.dart';
 import 'package:prmproject/screens/models/products.dart';
 import 'package:prmproject/screens/order/order.dart';
 import 'package:prmproject/screens/provider/cart_provider.dart';
+import 'package:prmproject/screens/provider/cartproduct_provider.dart';
 import 'package:prmproject/screens/provider/dark_theme.dart';
 import 'package:prmproject/screens/provider/favs_provider.dart';
 import 'package:prmproject/screens/provider/order_provider.dart';
@@ -88,6 +90,9 @@ class _MyAppState extends State<MyApp> {
               ChangeNotifierProvider(
                 create: (_) => OrdersProvider(),
               ),
+              ChangeNotifierProvider(
+                create: (_) => CartProductProvider(),
+              ),
             ],
             child: Consumer<DarkThemeProvider>(
               builder: (context, themeChangeProvider, ch) {
@@ -113,6 +118,7 @@ class _MyAppState extends State<MyApp> {
                     UploadProductForm.routeName: (ctx) => UploadProductForm(),
 
                     OrderScreen.routeName: (ctx) => OrderScreen(),
+                    CartProductScreen.routeName: (ctx) => CartProductScreen(),
                   },
                 );
               },
