@@ -43,7 +43,7 @@ class _CartFullState extends State<CartFull> {
       onTap: () => Navigator.pushNamed(context, ProductDetails.routeName,
           arguments: widget.productId),
       child: Container(
-        height: 135,
+        height: 140,
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -169,7 +169,7 @@ class _CartFullState extends State<CartFull> {
                                   color: cartAttr.quantity < 2
                                       ? Colors.grey
                                       : Colors.red,
-                                  size: 22,
+                                  size: 20,
                                 ),
                               ),
                             ),
